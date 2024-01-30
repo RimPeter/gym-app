@@ -178,4 +178,7 @@ after that the app calculates which muscles has been effected by the exercise re
 1 sum of all wheight (sets * reps * wheigh) by muscle type(column) by each exercise(row)
 2 sum of wheight by exercise
 
+also:
+ability to add, remove and modify exercise
+
 '''
