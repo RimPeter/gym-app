@@ -167,3 +167,15 @@ muscle_dict = {
     'Core': ['Farmers Walk']
 }
 
+'''
+create an app, where you can put the following data in:
+1 exercise
+2 number of sets
+3 number of repetition per each set
+4 the wheight for each set
+
+after that the app calculates which muscles has been effected by the exercise regarding:
+1 sum of all wheight (sets * reps * wheigh) by muscle type(column) by each exercise(row)
+2 sum of wheight by exercise
+
+'''
