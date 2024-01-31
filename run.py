@@ -202,6 +202,5 @@ input tree:
     3 add exercise
     4 restart input tree
     5 exit program
-3 restart input tree
 4 exit program
 '''
