@@ -172,13 +172,36 @@ create an app, where you can put the following data in:
 1 exercise
 2 number of sets
 3 number of repetition per each set
-4 the wheight for each set
+4 the weight for each set
 
 after that the app calculates which muscles has been effected by the exercise regarding:
-1 sum of all wheight (sets * reps * wheigh) by muscle type(column) by each exercise(row)
-2 sum of wheight by exercise
+1 sum of all weight (sets * reps * weight) by muscle type(column) by each exercise(row)
+2 sum of weight by exercise
 
 also:
 ability to add, remove and modify exercise
 
+'''
+
+'''
+input tree:
+
+1 enter exercise
+    1 enter set (repetition * weight)
+        1 enter value of reps and weight --> ['reps', 'weight', 'reps', ...('set' value)] 
+        2 options for all kinds of printing:
+            1 recent input
+            2 muscles effected and values
+            3 restart input tree
+            4 exit program
+        3 restart input tree
+        4 exit program
+2 change dictionary
+    1 delete exercise
+    2 modify exercise
+    3 add exercise
+    4 restart input tree
+    5 exit program
+3 restart input tree
+4 exit program
 '''
