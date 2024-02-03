@@ -14,7 +14,7 @@ SHEET = GSPREAD_CLIENT.open('gym_app')
 
 workout = SHEET.worksheet('exercise')
 data = workout.get_all_values()
-print(data)
+#print(data)
 
 
 
@@ -222,5 +222,32 @@ input tree:
     3 add exercise
     4 restart input tree
     5 exit program
-4 exit program
+3 exit program
 '''
+
+muscle_type = input('input muscle type you want to exercise!')
+print(muscle_type)
+
+
+print(muscle_dict.keys())
+
+
+for muscle_key in muscle_dict.keys():
+    if muscle_key == muscle_type:
+        print(f'you have chosen {muscle_key} type')
+        for index, exercise in enumerate(muscle_dict[muscle_key], start=1):
+            print(f'{index}. {exercise}')
+            
+        user_input = input("Enter the index number to select an exercise: ")
+        #print(muscle_dict[muscle_key])
+        try:
+            index = int(user_input) - 1
+
+            # Access and print the exercise at the chosen index
+            if index >= 0 and index < len(muscle_dict[muscle_key]):
+                print(f"The exercise at index {user_input} is: {muscle_dict[muscle_key][index]}")
+            else:
+                print("Invalid index. Please enter a number within the range of the list.")
+        except ValueError:
+            # Handle the case where the input is not an integer
+            print("Please enter a valid integer.")
