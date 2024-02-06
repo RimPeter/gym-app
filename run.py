@@ -266,25 +266,25 @@ input tree:
 # workout_data = SHEET.worksheet('exercise').get_all_values()
 # print(workout_data)
 
-def input_workout_data():
+def input_muscle_data():
     '''
     Get workout input data from user
     '''
     
-    muscle_type = input('input muscle type you want to exercise!')
-    muscle_type = muscle_type.lower()
-    muscle_t = False
-    while muscle_t == True:
+    muscle_type_choice = False
+    while muscle_type_choice != True:
+        muscle_type = input('input muscle type you want to exercise!')
+        muscle_type = muscle_type.lower()
         
-        for muscle_key in muscle_dict.keys():
-            if muscle_key == muscle_type:
-                print(f'you have chosen {muscle_key} muscle type')
-                muscle_t = True
-        if muscle_t == False:
-            print('muscle type not recognized')    
-
-
-    
+        if muscle_type in muscle_dict:
+            muscle_type_choice = True
+            print('True')
+        else:
+            print('False')
+            keys_list = list(muscle_dict.keys())
+            print('The muscle types you can choose:')
+            print(keys_list)
     return muscle_type
-muscle_type = input_workout_data()  
+
+muscle_type = input_muscle_data()  
 print(muscle_type)
