@@ -227,44 +227,37 @@ input tree:
 3 exit program
 '''
 
-def get_exercise_data():
-    '''
-    Get exercise data from user
-    '''
- 
-    muscle_type = input('input muscle type you want to exercise!')
-    print(muscle_type)
+muscle_type = input('input muscle type you want to exercise!')
+
+print(muscle_type)
+
+print(muscle_dict.keys())
+for muscle_key in muscle_dict.keys():
+    if muscle_key == muscle_type:
+        print(f'you have chosen {muscle_key} type')
+        for index, exercise in enumerate(muscle_dict[muscle_key], start=1):
+            print(f'{index}. {exercise}')
+            
+        user_input = input("Enter the index number to select an exercise: \n")
+        #print(muscle_dict[muscle_key])
+        try:
+            index = int(user_input) - 1
+
+            # Access and print the exercise at the chosen index
+            if index >= 0 and index < len(muscle_dict[muscle_key]):
+                print(f"The exercise at index {user_input} is: {muscle_dict[muscle_key][index]}")
+            else:
+                print("Invalid index. Please enter a number within the range of the list.")
+        except ValueError:
+            # Handle the case where the input is not an integer
+            print("Please enter a valid integer.")
+        chosen_exercise = muscle_dict[muscle_key][index]
+
+number_of_sets = input('enter number of sets!')
+
+for set_number in range(int(number_of_sets)):
+    repetition = input('input repetition\n')
+    weight = input('input weight\n')
+    print(repetition, weight)
 
 
-    print(muscle_dict.keys())
-
-
-    for muscle_key in muscle_dict.keys():
-        if muscle_key == muscle_type:
-            print(f'you have chosen {muscle_key} type')
-            for index, exercise in enumerate(muscle_dict[muscle_key], start=1):
-                print(f'{index}. {exercise}')
-                
-            user_input = input("Enter the index number to select an exercise: ")
-            #print(muscle_dict[muscle_key])
-            try:
-                index = int(user_input) - 1
-
-                # Access and print the exercise at the chosen index
-                if index >= 0 and index < len(muscle_dict[muscle_key]):
-                    print(f"The exercise at index {user_input} is: {muscle_dict[muscle_key][index]}")
-                else:
-                    print("Invalid index. Please enter a number within the range of the list.")
-            except ValueError:
-                # Handle the case where the input is not an integer
-                print("Please enter a valid integer.")
-            chosen_exercise = muscle_dict[muscle_key][index]
-
-    number_of_sets = input('enter number of sets!')
-
-    for set_number in range(int(number_of_sets)):
-        repetition = input('input repetition')
-        weight = input('input weight')
-        print(repetition, weight)
-
-get_exercise_data()
