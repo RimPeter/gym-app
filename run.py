@@ -273,7 +273,7 @@ def input_muscle_data():
     
     muscle_type_choice = False
     while muscle_type_choice != True:
-        muscle_type = input('input muscle type you want to exercise!')
+        muscle_type = input('input muscle type you want to exercise!\n')
         muscle_type = muscle_type.lower()
         
         if muscle_type in muscle_dict:
@@ -288,3 +288,28 @@ def input_muscle_data():
 
 muscle_type = input_muscle_data()  
 print(muscle_type)
+
+def choose_exercise():
+    for muscle_key in muscle_dict.keys():
+        if muscle_key == muscle_type:
+            print(f'You have chosen {muscle_key} muscle type.')
+            for index, exercise in enumerate(muscle_dict[muscle_key], start=1):
+                print(f'{index}. {exercise}')
+            
+            while True:  
+                user_input = input("Enter the index number to select an exercise: \n")
+                
+                try:
+                    index = int(user_input) - 1
+                    
+                    if index >= 0 and index < len(muscle_dict[muscle_key]):
+                        chosen_exercise = muscle_dict[muscle_key][index]
+                        print(f"The exercise at index {user_input} is: {chosen_exercise}")
+                        break  
+                    else:
+                        print("Invalid index. Please enter a number within the range of the list.")
+                except ValueError:
+                    print("Please enter a valid integer.")
+    return chosen_exercise
+
+print(choose_exercise())
