@@ -1,0 +1,119 @@
+{
+    "pectorals": [
+        "bench press (flat, incline, decline)",
+        "dumbbell flyes (flat, incline, decline)",
+        "chest dips",
+        "push-ups",
+        "cable crossovers"
+    ],
+    "triceps": [
+        "bench press (flat, incline, decline)",
+        "chest dips",
+        "push-ups",
+        "overhead press (barbell, dumbbell)",
+        "tricep extensions (skullcrushers)",
+        "tricep pushdowns (cable)",
+        "overhead tricep extension (dumbbell, cable)",
+        "dips",
+        "close-grip bench press"
+    ],
+    "shoulders": [
+        "bench press (flat, incline, decline)",
+        "dumbbell flyes (flat, incline, decline)",
+        "push-ups",
+        "pull-ups/chin-ups",
+        "overhead press (barbell, dumbbell)",
+        "planks",
+        "clean and press",
+        "snatch",
+        "thrusters",
+        "kettlebell swings",
+        "farmers walk"
+    ],
+    "lower back": [
+        "deadlift",
+        "squats (back squat, front squat, overhead squat)",
+        "deadlifts (traditional, sumo, romanian)",
+        "planks",
+        "kettlebell swings"
+    ],
+    "glutes": [
+        "deadlift",
+        "squats (back squat, front squat, overhead squat)",
+        "leg press",
+        "lunges (barbell, dumbbell)",
+        "deadlifts (traditional, sumo, romanian)",
+        "clean and press",
+        "snatch",
+        "thrusters",
+        "kettlebell swings"
+    ],
+    "hamstrings": [
+        "deadlift",
+        "squats (back squat, front squat, overhead squat)",
+        "leg press",
+        "lunges (barbell, dumbbell)",
+        "hamstring curls (lying, seated)",
+        "deadlifts (traditional, sumo, romanian)",
+        "clean and press",
+        "snatch",
+        "kettlebell swings"
+    ],
+    "upper back": [
+        "deadlift",
+        "bent-over rows (barbell, dumbbell)",
+        "t-bar row",
+        "lat pulldowns",
+        "deadlifts (traditional, sumo, romanian)",
+        "clean and press",
+        "snatch",
+        "thrusters",
+        "farmers walk"
+    ],
+    "forearms": ["deadlift", "farmers walk"],
+    "lats": [
+        "pull-ups/chin-ups",
+        "bent-over rows (barbell, dumbbell)",
+        "t-bar row",
+        "lat pulldowns",
+        "seated cable rows"
+    ],
+    "biceps": [
+        "pull-ups/chin-ups",
+        "bent-over rows (barbell, dumbbell)",
+        "lat pulldowns",
+        "seated cable rows",
+        "bicep curls (barbell, dumbbell, cable)",
+        "hammer curls",
+        "preacher curls",
+        "concentration curls",
+        "ez-bar curls"
+    ],
+    "middle back": ["t-bar row", "seated cable rows"],
+    "shoulder deltoids": ["lateral raises (dumbbell, cable)"],
+    "front deltoids": ["front raises (dumbbell, cable)"],
+    "rear deltoids": ["rear delt flyes (dumbbell, machine)"],
+    "trapezius": ["shrugs (barbell, dumbbell)"],
+    "forearm": ["hammer curls"],
+    "chest": ["dips", "close-grip bench press"],
+    "quadriceps": [
+        "squats (back squat, front squat, overhead squat)",
+        "leg press",
+        "lunges (barbell, dumbbell)",
+        "leg extensions",
+        "clean and press",
+        "snatch",
+        "thrusters"
+    ],
+    "calves": ["calf raises (seated, standing)"],
+    "abdominals": [
+        "crunches",
+        "russian twists",
+        "planks",
+        "cable woodchoppers"
+    ],
+    "obliques": ["russian twists", "cable woodchoppers"],
+    "lower abdominals": ["leg raises (hanging, lying)"],
+    "hip flexors": ["leg raises (hanging, lying)"],
+    "core": ["farmers walk"]
+}
