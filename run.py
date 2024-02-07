@@ -1,4 +1,5 @@
 import gspread
+import json
 from google.oauth2.service_account import Credentials
 
 SCOPE = [
@@ -20,52 +21,8 @@ data = workout.get_all_values()
 
 
 # Creating a Python dictionary with exercises as keys and muscle types as values
-
-exercise_dict = {
-    "bench press (flat, incline, decline)": ["pectorals", "triceps", "shoulders"],
-    "dumbbell flyes (flat, incline, decline)": ["pectorals", "shoulders"],
-    "chest dips": ["pectorals", "triceps"],
-    "push-ups": ["pectorals", "triceps", "shoulders"],
-    "cable crossovers": ["pectorals"],
-    "deadlift": ["lower back", "glutes", "hamstrings", "upper back", "forearms"],
-    "pull-ups/chin-ups": ["lats", "biceps", "shoulders"],
-    "bent-over rows (barbell, dumbbell)": ["upper back", "lats", "biceps"],
-    "t-bar row": ["upper back", "lats", "middle back"],
-    "lat pulldowns": ["lats", "upper back", "biceps"],
-    "seated cable rows": ["middle back", "lats", "biceps"],
-    "overhead press (barbell, dumbbell)": ["shoulders", "triceps"],
-    "lateral raises (dumbbell, cable)": ["shoulder deltoids"],
-    "front raises (dumbbell, cable)": ["front deltoids"],
-    "rear delt flyes (dumbbell, machine)": ["rear deltoids"],
-    "shrugs (barbell, dumbbell)": ["trapezius"],
-    "bicep curls (barbell, dumbbell, cable)": ["biceps"],
-    "hammer curls": ["biceps", "forearm"],
-    "preacher curls": ["biceps"],
-    "concentration curls": ["biceps"],
-    "ez-bar curls": ["biceps"],
-    "tricep extensions (skullcrushers)": ["triceps"],
-    "tricep pushdowns (cable)": ["triceps"],
-    "overhead tricep extension (dumbbell, cable)": ["triceps"],
-    "dips": ["triceps", "chest"],
-    "close-grip bench press": ["triceps", "chest"],
-    "squats (back squat, front squat, overhead squat)": ["quadriceps", "hamstrings", "glutes", "lower back"],
-    "leg press": ["quadriceps", "hamstrings", "glutes"],
-    "lunges (barbell, dumbbell)": ["quadriceps", "hamstrings", "glutes"],
-    "leg extensions": ["quadriceps"],
-    "hamstring curls (lying, seated)": ["hamstrings"],
-    "calf raises (seated, standing)": ["calves"],
-    "deadlifts (traditional, sumo, romanian)": ["hamstrings", "glutes", "lower back", "upper back"],
-    "crunches": ["abdominals"],
-    "russian twists": ["obliques", "abdominals"],
-    "leg raises (hanging, lying)": ["lower abdominals", "hip flexors"],
-    "planks": ["abdominals", "lower back", "shoulders"],
-    "cable woodchoppers": ["obliques", "abdominals"],
-    "clean and press": ["shoulders", "upper back", "hamstrings", "glutes", "quadriceps"],
-    "snatch": ["shoulders", "upper back", "hamstrings", "glutes", "quadriceps"],
-    "thrusters": ["shoulders", "quadriceps", "glutes", "upper back"],
-    "kettlebell swings": ["hamstrings", "glutes", "lower back", "shoulders"],
-    "farmers walk": ["forearms", "shoulders", "upper back", "core"]
-}
+with open('exercisedict.json', 'r') as file:
+    exercise_dict = json.load(file)
 
 
 muscle_dict = {
@@ -282,7 +239,7 @@ def input_muscle_data():
         else:
             print('False')
             keys_list = list(muscle_dict.keys())
-            print('The muscle types you can choose:')
+            print('The muscle types you can choose are:')
             print(keys_list)
     return muscle_type
 
@@ -313,3 +270,4 @@ def choose_exercise():
     return chosen_exercise
 
 print(choose_exercise())
+
