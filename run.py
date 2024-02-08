@@ -101,13 +101,10 @@ def choose_exercise():
 
 print(choose_exercise())
 
-def number_of_sets():
-    number_of_set = input('enter number of sets!')
-    return number_of_set
-
-#number_of_set = number_of_sets()
 def exerecise_values():
-    for set_number in range(int(number_of_sets())):
+    for set_number in range(int(input('enter number of sets!\n'))):
         repetition = input('input repetition\n')
         weight = input('input weight\n')
         print(repetition, weight)
+        
+exerecise_values()
