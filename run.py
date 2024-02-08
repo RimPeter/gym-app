@@ -101,8 +101,20 @@ def choose_exercise():
 
 print(choose_exercise())
 
+def number_of_sets():
+    while True:
+        try:
+            number_of_set = int(input('Enter number of sets!\n'))
+            if number_of_set > 0:
+                return number_of_set
+            else:
+                print("Please enter a number greater than zero.")
+        except ValueError:
+            print("Please enter a valid integer.")
+
+#number_of_set = number_of_sets()
 def exerecise_values():
-    for set_number in range(int(input('enter number of sets!\n'))):
+    for set_number in range(int(number_of_sets())):
         repetition = input('input repetition\n')
         weight = input('input weight\n')
         print(repetition, weight)
