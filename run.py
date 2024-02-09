@@ -73,8 +73,7 @@ def input_muscle_data():
             print(keys_list)
     return muscle_type
 
-muscle_type = input_muscle_data()  
-print(muscle_type)
+
 
 def choose_exercise():
     for muscle_key in muscle_dict.keys():
@@ -98,7 +97,7 @@ def choose_exercise():
                 except ValueError:
                     print("Please enter a valid integer.")
     return chosen_exercise
-chosen_exercise = choose_exercise()
+
 #print(choose_exercise())
 
 def number_of_sets():
@@ -120,5 +119,11 @@ def exerecise_values():
         each_set = chosen_exercise, int(set_number+1), int(repetition), int(weight)
         workout.append_row(each_set)
         print(repetition, weight)
-        
-exerecise_values()
+  
+def main():      
+    muscle_type = input_muscle_data()  
+    print(muscle_type)
+    chosen_exercise = choose_exercise()
+    exerecise_values()
+    
+main()
