@@ -98,8 +98,8 @@ def choose_exercise():
                 except ValueError:
                     print("Please enter a valid integer.")
     return chosen_exercise
-
-print(choose_exercise())
+chosen_exercise = choose_exercise()
+#print(choose_exercise())
 
 def number_of_sets():
     while True:
@@ -117,6 +117,8 @@ def exerecise_values():
     for set_number in range(int(number_of_sets())):
         repetition = input('input repetition\n')
         weight = input('input weight\n')
+        each_set = chosen_exercise, int(set_number+1), int(repetition), int(weight)
+        workout.append_row(each_set)
         print(repetition, weight)
         
 exerecise_values()
