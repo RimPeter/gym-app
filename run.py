@@ -124,12 +124,25 @@ def exerecise_values():
 all_exercise = SHEET.worksheet('exercise').get_all_values()
 #print(all_exercise)
 
+
 def print_my_workout(all_exercise):
-    my_workout = input('input workout to print:\n')
+    each_exercise = list(set(exercise[0] for exercise in all_exercise[1:]))
+    each_exercise.sort()  
+
+    print("Select an exercise type to print:")
+    for index, exercise in enumerate(each_exercise, start=1):
+        print(f"{index}. {exercise}")
+
+    try:
+        choice_index = int(input('Enter the index number of the workout to print:\n')) - 1
+        chosen_exercise = each_exercise[choice_index]
+    except (ValueError, IndexError):
+        print("Invalid selection. Please enter a valid index number.")
+        return
     print(all_exercise[0])
+
     for exercise in all_exercise[1:]:
-        if exercise[0] == my_workout:
+        if exercise[0] == chosen_exercise:
             print(exercise)
 
 print_my_workout(all_exercise)
-
