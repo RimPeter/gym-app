@@ -126,8 +126,10 @@ all_exercise = SHEET.worksheet('exercise').get_all_values()
 
 def print_my_workout(all_exercise):
     my_workout = input('input workout to print:\n')
-    for exercise in all_exercise:
+    print(all_exercise[0])
+    for exercise in all_exercise[1:]:
         if exercise[0] == my_workout:
             print(exercise)
 
 print_my_workout(all_exercise)
+
