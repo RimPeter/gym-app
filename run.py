@@ -93,7 +93,7 @@ def exerecise_values():
     for set_number in range(int(number_of_sets())):
         repetition = input('input repetition\n')
         weight = input('input weight\n')
-        each_set = chosen_exercise, int(set_number+1), int(repetition), int(weight)
+        each_set = chosen_exercise, int(set_number+1), int(repetition), int(weight), int(repetition)*int(weight)
         workout.append_row(each_set)
         print(repetition, weight)
   
@@ -119,7 +119,7 @@ def print_my_workout(data):
         if exercise[0] == chosen_exercise:
             print(exercise)
 
-#print_my_workout(data)
+print_my_workout(data)
 
 def add_workout_to_cumulative(workout, cumulative):
     workout_first_column = workout.col_values(1)
@@ -129,21 +129,8 @@ def add_workout_to_cumulative(workout, cumulative):
     for value in values_to_add:
         cumulative.append_row([value])
         
-add_workout_to_cumulative(workout, cumulative)
+#add_workout_to_cumulative(workout, cumulative)
 
-def update_sum_of_weights(workout):
-    num_rows = len(workout.get_all_values())
-    
-    for i in range(2, num_rows + 1):  
-        value_4 = workout.cell(i, 3).value
-        value_5 = workout.cell(i, 4).value
-        
-        try:
-            product = float(value_4) * float(value_5)
-        except TypeError:
-            print(f"Skipping row {i} due to non-numeric data")
-            continue
-        
-        workout.update_cell(i, 5, product)
-        
-update_sum_of_weights(workout)
+
+
+
