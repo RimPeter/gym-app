@@ -16,9 +16,8 @@ SHEET = GSPREAD_CLIENT.open('gym_app')
 
 workout = SHEET.worksheet('exercise')
 data = workout.get_all_values()
-#print(data)
 
-
+cumulative = SHEET.worksheet('cumulative')
 
 
 # Creating a Python dictionary with exercises as keys and muscle types as values
@@ -29,27 +28,6 @@ with open('muscledict.json', 'r') as file:
     muscle_dict = json.load(file)
 
 
-'''
-input tree:
-
-1 enter exercise
-    1 enter set (repetition * weight)
-        1 enter value of reps and weight --> ['reps', 'weight', 'reps', ...('set' value)] 
-        2 options for all kinds of printing:
-            1 recent input
-            2 muscles effected and values
-            3 restart input tree
-            4 exit program
-        3 restart input tree
-        4 exit program
-2 change dictionary
-    1 delete exercise
-    2 modify exercise
-    3 add exercise
-    4 restart input tree
-    5 exit program
-3 exit program
-'''
 
 # workout_data = SHEET.worksheet('exercise').get_all_values()
 # print(workout_data)
@@ -121,12 +99,8 @@ def exerecise_values():
   
 #exerecise_values()
 
-all_exercise = SHEET.worksheet('exercise').get_all_values()
-#print(all_exercise)
-
-
-def print_my_workout(all_exercise):
-    each_exercise = list(set(exercise[0] for exercise in all_exercise[1:]))
+def print_my_workout(data):
+    each_exercise = list(set(exercise[0] for exercise in data[1:]))
     each_exercise.sort()  
 
     print("Select an exercise type to print:")
@@ -139,10 +113,20 @@ def print_my_workout(all_exercise):
     except (ValueError, IndexError):
         print("Invalid selection. Please enter a valid index number.")
         return
-    print(all_exercise[0])
+    print(data[0])
 
-    for exercise in all_exercise[1:]:
+    for exercise in data[1:]:
         if exercise[0] == chosen_exercise:
             print(exercise)
 
-print_my_workout(all_exercise)
+#print_my_workout(data)
+
+def add_workout_to_cumulative(workout, cumulative):
+    workout_first_column = workout.col_values(1)
+    cumulative_first_column = cumulative.col_values(1)
+    unique_workout_values = list(set(workout_first_column))
+    values_to_add = [value for value in unique_workout_values if value not in cumulative_first_column]
+    for value in values_to_add:
+        cumulative.append_row([value])
+        
+add_workout_to_cumulative(workout, cumulative)
