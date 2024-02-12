@@ -88,16 +88,29 @@ def number_of_sets():
         except ValueError:
             print("Please enter a valid integer.")
 
+def update_cumulative(chosen_exercise, total_weight):
+    cumulative_exercises = cumulative.col_values(1)
+    if chosen_exercise not in cumulative_exercises:
+        cumulative.append_row([chosen_exercise, total_weight])
+    else:
+        row_number = cumulative_exercises.index(chosen_exercise) + 1
+        current_value = cumulative.cell(row_number, 2).value
+        new_value = int(current_value) + total_weight if current_value.isdigit() else total_weight
+        cumulative.update_cell(row_number, 2, new_value)
+
 def exerecise_values():
     chosen_exercise = choose_exercise()
+    total_weight = 0
     for set_number in range(int(number_of_sets())):
         repetition = input('input repetition\n')
         weight = input('input weight\n')
         each_set = chosen_exercise, int(set_number+1), int(repetition), int(weight), int(repetition)*int(weight)
         workout.append_row(each_set)
         print(repetition, weight)
-  
-#exerecise_values()
+        total_weight += int(repetition) * int(weight)
+    update_cumulative(chosen_exercise, total_weight)
+    
+exerecise_values()
 
 def print_my_workout(data):
     each_exercise = list(set(exercise[0] for exercise in data[1:]))
@@ -119,18 +132,7 @@ def print_my_workout(data):
         if exercise[0] == chosen_exercise:
             print(exercise)
 
-print_my_workout(data)
-
-def add_workout_to_cumulative(workout, cumulative):
-    workout_first_column = workout.col_values(1)
-    cumulative_first_column = cumulative.col_values(1)
-    unique_workout_values = list(set(workout_first_column))
-    values_to_add = [value for value in unique_workout_values if value not in cumulative_first_column]
-    for value in values_to_add:
-        cumulative.append_row([value])
-        
-#add_workout_to_cumulative(workout, cumulative)
-
+#print_my_workout(data)
 
 
 
