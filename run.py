@@ -15,9 +15,11 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('gym_app')
 
 workout = SHEET.worksheet('exercise')
-data = workout.get_all_values()
+workout_data = workout.get_all_values()
 
 cumulative = SHEET.worksheet('cumulative')
+cumulative_data = cumulative.get_all_values()
+
 
 
 # Creating a Python dictionary with exercises as keys and muscle types as values
@@ -110,7 +112,7 @@ def exerecise_values():
         total_weight += int(repetition) * int(weight)
     update_cumulative(chosen_exercise, total_weight)
     
-exerecise_values()
+#exerecise_values()
 
 def print_my_workout(data):
     each_exercise = list(set(exercise[0] for exercise in data[1:]))
@@ -132,7 +134,11 @@ def print_my_workout(data):
         if exercise[0] == chosen_exercise:
             print(exercise)
 
-#print_my_workout(data)
+#print_my_workout(workout_data)
 
-
+def print_sum_of_all_weights():
+    for row in cumulative_data:
+        print(row)
+        
+print_sum_of_all_weights()
 
