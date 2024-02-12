@@ -2,6 +2,7 @@ import gspread
 import json
 from google.oauth2.service_account import Credentials
 
+
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -73,8 +74,6 @@ def input_muscle_data():
             print(keys_list)
     return muscle_type
 
-
-
 def choose_exercise():
     muscle_type = input_muscle_data() 
     for muscle_key in muscle_dict.keys():
@@ -98,8 +97,7 @@ def choose_exercise():
                 except ValueError:
                     print("Please enter a valid integer.")
     return chosen_exercise
-chosen_exercise = choose_exercise()
-#print(choose_exercise())
+
 
 def number_of_sets():
     while True:
@@ -112,14 +110,8 @@ def number_of_sets():
         except ValueError:
             print("Please enter a valid integer.")
 
-
-
-
-    
-
-
-#number_of_set = number_of_sets()
 def exerecise_values():
+    chosen_exercise = choose_exercise()
     for set_number in range(int(number_of_sets())):
         repetition = input('input repetition\n')
         weight = input('input weight\n')
@@ -127,4 +119,15 @@ def exerecise_values():
         workout.append_row(each_set)
         print(repetition, weight)
   
-exerecise_values()
+#exerecise_values()
+
+all_exercise = SHEET.worksheet('exercise').get_all_values()
+#print(all_exercise)
+
+def print_my_workout(all_exercise):
+    my_workout = input('input workout to print:\n')
+    for exercise in all_exercise:
+        if exercise[0] == my_workout:
+            print(exercise)
+
+print_my_workout(all_exercise)
