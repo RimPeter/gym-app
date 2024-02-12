@@ -130,3 +130,20 @@ def add_workout_to_cumulative(workout, cumulative):
         cumulative.append_row([value])
         
 add_workout_to_cumulative(workout, cumulative)
+
+def update_sum_of_weights(workout):
+    num_rows = len(workout.get_all_values())
+    
+    for i in range(2, num_rows + 1):  
+        value_4 = workout.cell(i, 3).value
+        value_5 = workout.cell(i, 4).value
+        
+        try:
+            product = float(value_4) * float(value_5)
+        except TypeError:
+            print(f"Skipping row {i} due to non-numeric data")
+            continue
+        
+        workout.update_cell(i, 5, product)
+        
+update_sum_of_weights(workout)
