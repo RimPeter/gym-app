@@ -174,6 +174,21 @@ def print_sum_of_all_weights():
     for row in cumulative_data:
         print(row)
         
+def remove_cumulative(rows_to_delete):
+    '''
+    Reduces the cumulative total by the 5th column values of workout worksheet
+    '''
+    for row in rows_to_delete:
+        exercise_name = row[0]
+        weight_to_subtract = int(row[4])
+        
+        cumulative_exercises = cumulative.col_values(1)
+        if exercise_name in cumulative_exercises:
+            row_index = cumulative_exercises.index(exercise_name) + 1
+            current_weight = int(cumulative.cell(row_index, 2).value)
+            new_weight = max(0, current_weight - weight_to_subtract)
+            cumulative.update_cell(row_index, 2, new_weight)
+        
 def delete_recent_rows_of_workout():
     '''
     Delete recent rows, number of rows deleted are defined by input
@@ -187,6 +202,8 @@ def delete_recent_rows_of_workout():
         return
 
     start_row = total_rows - num_rows_to_delete + 1
+    rows_to_delete = workout.get(f"A{start_row}:E{total_rows}")
+    remove_cumulative(rows_to_delete)
     workout.delete_rows(start_row, total_rows)
     print(f"Deleted the last {num_rows_to_delete} rows.")
 
