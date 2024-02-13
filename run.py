@@ -36,7 +36,7 @@ with open('muscledict.json', 'r') as file:
 
 def input_muscle_data():
     '''
-    Get workout input data from user
+    Input a muscle type, ensures it's valid per muscle_dict, and returns the choice.
     '''
     
     muscle_type_choice = False
@@ -55,6 +55,9 @@ def input_muscle_data():
     return muscle_type
 
 def choose_exercise():
+    '''
+    select an exercise based on their chosen muscle type, validating choice against muscle_dict.
+    '''
     muscle_type = input_muscle_data() 
     for muscle_key in muscle_dict.keys():
         if muscle_key == muscle_type:
@@ -80,6 +83,9 @@ def choose_exercise():
 
 
 def number_of_sets():
+    '''
+    Number of sets to perform, ensuring a positive integer is provided.
+    '''
     while True:
         try:
             number_of_set = int(input('Enter number of sets!\n'))
@@ -91,6 +97,9 @@ def number_of_sets():
             print("Please enter a valid integer.")
 
 def update_cumulative(chosen_exercise, total_weight):
+    '''
+    Updates 'cumulative' worksheet with exercise and total weight, avoiding duplicates and summing weights.
+    '''
     cumulative_exercises = cumulative.col_values(1)
     if chosen_exercise not in cumulative_exercises:
         cumulative.append_row([chosen_exercise, total_weight])
@@ -114,7 +123,11 @@ def get_integer_input(prompt):
         except ValueError:
             print("Invalid input. Please enter a valid integer.")
 
-def exerecise_values():
+def exercise_values():
+    '''
+    Takes workout data (exercise, sets, reps, weight) to the 'workout' sheet, and updates cumulative sums in 'cumulative' sheet.
+    Inputs are integers and updates are based on valid, non-duplicate exercise data.
+    '''
     chosen_exercise = choose_exercise()
     total_weight = 0
     sets = get_integer_input('Enter the number of sets:\n')
@@ -127,9 +140,12 @@ def exerecise_values():
         total_weight += repetition * weight
     update_cumulative(chosen_exercise, total_weight)
     
-exerecise_values()
+#exerecise_values()
 
 def print_my_workout(data):
+    '''
+    Print all data for chosen exercise 
+    '''
     each_exercise = list(set(exercise[0] for exercise in data[1:]))
     each_exercise.sort()  
 
@@ -152,8 +168,11 @@ def print_my_workout(data):
 #print_my_workout(workout_data)
 
 def print_sum_of_all_weights():
+    '''
+    Print the sum of all weights for each exercise done
+    '''
     for row in cumulative_data:
         print(row)
         
-#print_sum_of_all_weights()
+print_sum_of_all_weights()
 
