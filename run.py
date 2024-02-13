@@ -219,7 +219,8 @@ def main():
         print("1. Enter workout data")
         print("2. Print my workout")
         print("3. Print sum of all weights")
-        print("4. Exit")
+        print("4. Delete recent inputs")
+        print("5. Exit")
 
         choice = input("Enter your choice (1/2/3/4): ")
 
@@ -230,11 +231,13 @@ def main():
         elif choice == '3':
             print_sum_of_all_weights()
         elif choice == '4':
+            delete_recent_rows_of_workout()
+        elif choice == '5':
             print("Exiting program.")
             break
         else:
             print("Invalid choice. Please enter a valid option (1/2/3/4).")
 
-#main()
+main()
 
 
