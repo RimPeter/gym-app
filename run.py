@@ -140,7 +140,7 @@ def exercise_values():
         total_weight += repetition * weight
     update_cumulative(chosen_exercise, total_weight)
     
-#exerecise_values()
+
 
 def print_my_workout(data):
     '''
@@ -165,7 +165,7 @@ def print_my_workout(data):
         if exercise[0] == chosen_exercise:
             print(exercise)
 
-#print_my_workout(workout_data)
+
 
 def print_sum_of_all_weights():
     '''
@@ -174,5 +174,31 @@ def print_sum_of_all_weights():
     for row in cumulative_data:
         print(row)
         
-print_sum_of_all_weights()
+def main():
+    '''
+    options for user to decide which function to trigger
+    '''
+    while True:
+        print("\nChoose an option:")
+        print("1. Enter workout data")
+        print("2. Print my workout")
+        print("3. Print sum of all weights")
+        print("4. Exit")
+
+        choice = input("Enter your choice (1/2/3/4): ")
+
+        if choice == '1':
+            exercise_values()
+        elif choice == '2':
+            print_my_workout(workout_data)
+        elif choice == '3':
+            print_sum_of_all_weights()
+        elif choice == '4':
+            print("Exiting program.")
+            break
+        else:
+            print("Invalid choice. Please enter a valid option (1/2/3/4).")
+
+main()
+
 
