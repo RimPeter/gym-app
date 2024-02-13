@@ -100,19 +100,34 @@ def update_cumulative(chosen_exercise, total_weight):
         new_value = int(current_value) + total_weight if current_value.isdigit() else total_weight
         cumulative.update_cell(row_number, 2, new_value)
 
+def get_integer_input(prompt):
+    '''
+    For "repetition" input and "weight" input inside exerecise_values() function
+    '''
+    while True:
+        try:
+            user_input = int(input(prompt))
+            if user_input > 0:
+                return user_input
+            else:
+                print("Please enter a number greater than zero.")
+        except ValueError:
+            print("Invalid input. Please enter a valid integer.")
+
 def exerecise_values():
     chosen_exercise = choose_exercise()
     total_weight = 0
-    for set_number in range(int(number_of_sets())):
-        repetition = input('input repetition\n')
-        weight = input('input weight\n')
+    sets = get_integer_input('Enter the number of sets:\n')
+    for set_number in range(sets):
+        repetition = get_integer_input(f'Input repetition for set {set_number + 1}:\n')
+        weight = get_integer_input(f'Input weight for set {set_number + 1} (in kg):\n')
         each_set = chosen_exercise, int(set_number+1), int(repetition), int(weight), int(repetition)*int(weight)
         workout.append_row(each_set)
-        print(repetition, weight)
-        total_weight += int(repetition) * int(weight)
+        print(f"Set {set_number + 1}: Repetitions = {repetition}, Weight = {weight}kg")
+        total_weight += repetition * weight
     update_cumulative(chosen_exercise, total_weight)
     
-#exerecise_values()
+exerecise_values()
 
 def print_my_workout(data):
     each_exercise = list(set(exercise[0] for exercise in data[1:]))
@@ -140,5 +155,5 @@ def print_sum_of_all_weights():
     for row in cumulative_data:
         print(row)
         
-print_sum_of_all_weights()
+#print_sum_of_all_weights()
 
