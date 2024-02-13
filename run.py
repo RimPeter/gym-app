@@ -174,9 +174,28 @@ def print_sum_of_all_weights():
     for row in cumulative_data:
         print(row)
         
+def delete_recent_rows_of_workout():
+    '''
+    Delete recent rows, number of rows deleted are defined by input
+    '''
+    total_rows = len(workout.get_all_values())
+    print(f"Current total number of rows: {total_rows}")
+    num_rows_to_delete = int(input("Enter the number of last rows you want to delete: "))
+
+    if num_rows_to_delete <= 0 or num_rows_to_delete > total_rows:
+        print("Invalid number of rows to delete. Please enter a positive number less than or equal to the total number of rows.")
+        return
+
+    start_row = total_rows - num_rows_to_delete + 1
+    workout.delete_rows(start_row, total_rows)
+    print(f"Deleted the last {num_rows_to_delete} rows.")
+
+delete_recent_rows_of_workout()
+
+        
 def main():
     '''
-    options for user to decide which function to trigger
+    Options for user to decide which function to trigger
     '''
     while True:
         print("\nChoose an option:")
@@ -199,6 +218,6 @@ def main():
         else:
             print("Invalid choice. Please enter a valid option (1/2/3/4).")
 
-main()
+#main()
 
 
