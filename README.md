@@ -1,32 +1,56 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Gym Workout Tracker
 
-Welcome,
+This Python application utilizes Google Sheets through the `gspread` library to manage and track gym workouts, allowing users to input and view their exercise data, and manage cumulative workout statistics.
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **March 14, 2023**
+## Features
 
-## Reminders
+- **Enter Workout Data:** Users can input workout data including the exercise name, number of sets, repetitions per set, and weight used per set.
+- **View Workout Data:** Allows users to select and view workout data for a specific exercise.
+- **View Cumulative Weights:** Displays the sum of all weights lifted for each exercise.
+- **Delete Recent Inputs:** Enables users to delete a specified number of the most recent workout entries.
+- **Dynamic Data Management:** Automatically updates cumulative data in the 'cumulative' worksheet based on user actions.
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
+## Setup
 
-## Creating the Heroku app
+1. **Google Sheets API Configuration:**
+   - Enable the Google Sheets API and create credentials for a service account in the Google Cloud Platform.
+   - Download the service account credentials JSON file.
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+2. **Python Environment:**
+   - Ensure Python is installed on your system.
+   - Install the `gspread` and `oauth2client` packages using pip:
+     ```
+     pip install gspread oauth2client
+     ```
 
-1. `heroku/python`
-2. `heroku/nodejs`
+3. **Configuration:**
+   - Place the service account credentials JSON file in your project directory.
+   - Share your Google Sheet with the email address of your service account.
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+4. **Usage:**
+   - Run the Python script to interact with your Google Sheet data:
+     ```
+     python gym_workout_tracker.py
+     ```
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+## Functions
 
-Connect your GitHub repository and deploy as normal.
+- `input_muscle_data()`: Prompts the user to input a valid muscle type.
+- `choose_exercise()`: Allows selection of an exercise based on muscle type.
+- `number_of_sets()`: Inputs the number of sets, ensuring a positive integer.
+- `exercise_values()`: Captures and records workout data.
+- `update_cumulative()`: Updates or appends cumulative workout data.
+- `get_integer_input()`: Ensures user inputs are valid positive integers.
+- `print_my_workout()`: Displays workout data for chosen exercises.
+- `print_sum_of_all_weights()`: Outputs the cumulative weight lifted per exercise.
+- `remove_cumulative()`: Adjusts cumulative data before deleting workout rows.
+- `delete_recent_rows_of_workout()`: Deletes the last N rows from the workout sheet.
+- `main()`: Provides a menu for user interaction.
 
-## Constraints
+## Contributions
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+Contributions to this project are welcome. Please ensure to follow best practices for code contributions and adhere to the existing coding style.
 
----
+## License
 
-Happy coding!
+This project is open-sourced under the MIT License. See the LICENSE file for more details.
