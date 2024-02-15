@@ -31,12 +31,10 @@ def input_muscle_data():
     '''
     Input muscle type, check validity, and return choice.
     '''
-    
     muscle_type_choice = False
-    while muscle_type_choice != True:
+    while muscle_type_choice is not True:
         muscle_type = input('input muscle type you want to exercise!\n')
         muscle_type = muscle_type.lower()
-        
         if muscle_type in muscle_dict:
             muscle_type_choice = True
             print('True')
@@ -47,29 +45,27 @@ def input_muscle_data():
             print(keys_list)
     return muscle_type
 
+
 def choose_exercise():
     '''
     Select exercise based on muscle type; validate choice.
     '''
-    muscle_type = input_muscle_data() 
+    muscle_type = input_muscle_data()
     for muscle_key in muscle_dict.keys():
         if muscle_key == muscle_type:
             print(f'You have chosen {muscle_key} muscle type.')
             for index, exercise in enumerate(muscle_dict[muscle_key], start=1):
                 print(f'{index}. {exercise}')
-            
-            while True:  
-                user_input = input("Enter the index number to select an exercise: \n")
-                
+            while True:
+                user_input = input("Select index number for exercise: \n")
                 try:
                     index = int(user_input) - 1
-                    
                     if index >= 0 and index < len(muscle_dict[muscle_key]):
                         chosen_exercise = muscle_dict[muscle_key][index]
-                        print(f"The exercise at index {user_input} is: {chosen_exercise}")
-                        break  
+                        print(f"The selected exercise is: {chosen_exercise}")
+                        break
                     else:
-                        print("Invalid index. Please enter a number within the range of the list.")
+                        print("Invalid index. Select within the range of the list.")
                 except ValueError:
                     print("Please enter a valid integer.")
     return chosen_exercise
@@ -88,6 +84,7 @@ def number_of_sets():
                 print("Please enter a number greater than zero.")
         except ValueError:
             print("Please enter a valid integer.")
+
 
 def update_cumulative(chosen_exercise, total_weight):
     '''
@@ -131,7 +128,6 @@ def exercise_values():
         print(f"Set {set_number + 1}: Repetitions = {repetition}, Weight = {weight}kg")
         total_weight += repetition * weight
     update_cumulative(chosen_exercise, total_weight)
-    
 
 
 def print_my_workout(data):
@@ -139,7 +135,7 @@ def print_my_workout(data):
     Print workout data for selected exercise.
     '''
     each_exercise = list(set(exercise[0] for exercise in data[1:]))
-    each_exercise.sort()  
+    each_exercise.sort()
 
     print("Select an exercise type to print:")
     for index, exercise in enumerate(each_exercise, start=1):
@@ -165,7 +161,8 @@ def print_sum_of_all_weights():
     '''
     for row in cumulative_data:
         print(row)
-        
+
+
 def remove_cumulative(rows_to_delete):
     '''
     Adjust cumulative total by subtracting weights.
@@ -173,14 +170,14 @@ def remove_cumulative(rows_to_delete):
     for row in rows_to_delete:
         exercise_name = row[0]
         weight_to_subtract = int(row[4])
-        
         cumulative_exercises = cumulative.col_values(1)
         if exercise_name in cumulative_exercises:
             row_index = cumulative_exercises.index(exercise_name) + 1
             current_weight = int(cumulative.cell(row_index, 2).value)
             new_weight = max(0, current_weight - weight_to_subtract)
             cumulative.update_cell(row_index, 2, new_weight)
-        
+
+
 def delete_recent_rows_of_workout():
     '''
     Delete recent rows based on user input.
@@ -198,6 +195,7 @@ def delete_recent_rows_of_workout():
     remove_cumulative(rows_to_delete)
     workout.delete_rows(start_row, total_rows)
     print(f"Deleted the last {num_rows_to_delete} rows.")
+    
       
 def main():
     '''
@@ -227,6 +225,5 @@ def main():
         else:
             print("Invalid choice. Please enter a valid option (1/2/3/4).")
 
+
 main()
-
-
