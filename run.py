@@ -20,9 +20,6 @@ workout_data = workout.get_all_values()
 cumulative = SHEET.worksheet('cumulative')
 cumulative_data = cumulative.get_all_values()
 
-
-
-# Creating a Python dictionary with exercises as keys and muscle types as values
 with open('exercisedict.json', 'r') as file:
     exercise_dict = json.load(file)
 
@@ -32,7 +29,7 @@ with open('muscledict.json', 'r') as file:
 
 def input_muscle_data():
     '''
-    Input a muscle type, ensures it's valid per muscle_dict, and returns the choice.
+    Input muscle type, check validity, and return choice.
     '''
     
     muscle_type_choice = False
@@ -52,7 +49,7 @@ def input_muscle_data():
 
 def choose_exercise():
     '''
-    select an exercise based on their chosen muscle type, validating choice against muscle_dict.
+    Select exercise based on muscle type; validate choice.
     '''
     muscle_type = input_muscle_data() 
     for muscle_key in muscle_dict.keys():
@@ -80,7 +77,7 @@ def choose_exercise():
 
 def number_of_sets():
     '''
-    Number of sets to perform, ensuring a positive integer is provided.
+    Get number of sets; ensure positive integer.
     '''
     while True:
         try:
@@ -94,7 +91,7 @@ def number_of_sets():
 
 def update_cumulative(chosen_exercise, total_weight):
     '''
-    Updates 'cumulative' worksheet with exercise and total weight, avoiding duplicates and summing weights.
+    Update 'cumulative' sheet with exercise/weight.
     '''
     cumulative_exercises = cumulative.col_values(1)
     if chosen_exercise not in cumulative_exercises:
@@ -107,7 +104,7 @@ def update_cumulative(chosen_exercise, total_weight):
 
 def get_integer_input(prompt):
     '''
-    This function is used for "repetition" input and "weight" input inside exerecise_values() function
+    Get integer input for repetitions/weight.
     '''
     while True:
         try:
@@ -121,8 +118,7 @@ def get_integer_input(prompt):
 
 def exercise_values():
     '''
-    Takes workout data (exercise, sets, reps, weight) to the 'workout' sheet, and updates cumulative sums in 'cumulative' sheet.
-    Inputs are integers and updates are based on valid, non-duplicate exercise data.
+    Record workout data and update 'cumulative' sheet.
     '''
     chosen_exercise = choose_exercise()
     total_weight = 0
@@ -140,7 +136,7 @@ def exercise_values():
 
 def print_my_workout(data):
     '''
-    Print all data for chosen exercise 
+    Print workout data for selected exercise.
     '''
     each_exercise = list(set(exercise[0] for exercise in data[1:]))
     each_exercise.sort()  
@@ -165,14 +161,14 @@ def print_my_workout(data):
 
 def print_sum_of_all_weights():
     '''
-    Print the sum of all weights for each exercise done
+    Print total weights for all exercises.
     '''
     for row in cumulative_data:
         print(row)
         
 def remove_cumulative(rows_to_delete):
     '''
-    Reduces the cumulative total by the 5th column (sum of weights) values of workout worksheet
+    Adjust cumulative total by subtracting weights.
     '''
     for row in rows_to_delete:
         exercise_name = row[0]
@@ -187,7 +183,7 @@ def remove_cumulative(rows_to_delete):
         
 def delete_recent_rows_of_workout():
     '''
-    Delete recent rows, number of rows deleted are defined by input
+    Delete recent rows based on user input.
     '''
     total_rows = len(workout.get_all_values())
     print(f"Current total number of rows: {total_rows}")
@@ -205,7 +201,7 @@ def delete_recent_rows_of_workout():
       
 def main():
     '''
-    Options for user to decide which function to trigger
+    Main menu for user actions.
     '''
     while True:
         print("\nChoose an option:")
