@@ -189,7 +189,6 @@ def delete_recent_rows_of_workout():
     '''
     Delete recent rows, number of rows deleted are defined by input
     '''
-    workout_data = workout.get_all_values()
     total_rows = len(workout.get_all_values())
     print(f"Current total number of rows: {total_rows}")
     num_rows_to_delete = int(input("Enter the number of last rows you want to delete: "))
