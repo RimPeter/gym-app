@@ -30,10 +30,6 @@ with open('muscledict.json', 'r') as file:
     muscle_dict = json.load(file)
 
 
-
-# workout_data = SHEET.worksheet('exercise').get_all_values()
-# print(workout_data)
-
 def input_muscle_data():
     '''
     Input a muscle type, ensures it's valid per muscle_dict, and returns the choice.
@@ -111,7 +107,7 @@ def update_cumulative(chosen_exercise, total_weight):
 
 def get_integer_input(prompt):
     '''
-    For "repetition" input and "weight" input inside exerecise_values() function
+    This function is used for "repetition" input and "weight" input inside exerecise_values() function
     '''
     while True:
         try:
@@ -176,7 +172,7 @@ def print_sum_of_all_weights():
         
 def remove_cumulative(rows_to_delete):
     '''
-    Reduces the cumulative total by the 5th column values of workout worksheet
+    Reduces the cumulative total by the 5th column (sum of weights) values of workout worksheet
     '''
     for row in rows_to_delete:
         exercise_name = row[0]
@@ -193,6 +189,7 @@ def delete_recent_rows_of_workout():
     '''
     Delete recent rows, number of rows deleted are defined by input
     '''
+    workout_data = workout.get_all_values()
     total_rows = len(workout.get_all_values())
     print(f"Current total number of rows: {total_rows}")
     num_rows_to_delete = int(input("Enter the number of last rows you want to delete: "))
@@ -206,10 +203,7 @@ def delete_recent_rows_of_workout():
     remove_cumulative(rows_to_delete)
     workout.delete_rows(start_row, total_rows)
     print(f"Deleted the last {num_rows_to_delete} rows.")
-
-delete_recent_rows_of_workout()
-
-        
+      
 def main():
     '''
     Options for user to decide which function to trigger
