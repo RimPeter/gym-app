@@ -99,6 +99,7 @@ def update_cumulative(chosen_exercise, total_weight):
         new_value = int(current_value) + total_weight if current_value.isdigit() else total_weight
         cumulative.update_cell(row_number, 2, new_value)
 
+
 def get_integer_input(prompt):
     '''
     Get integer input for repetitions/weight.
@@ -112,6 +113,7 @@ def get_integer_input(prompt):
                 print("Please enter a number greater than zero.")
         except ValueError:
             print("Invalid input. Please enter a valid integer.")
+
 
 def exercise_values():
     '''
@@ -154,7 +156,6 @@ def print_my_workout(data):
             print(exercise)
 
 
-
 def print_sum_of_all_weights():
     '''
     Print total weights for all exercises.
@@ -195,8 +196,8 @@ def delete_recent_rows_of_workout():
     remove_cumulative(rows_to_delete)
     workout.delete_rows(start_row, total_rows)
     print(f"Deleted the last {num_rows_to_delete} rows.")
-    
-      
+
+
 def main():
     '''
     Main menu for user actions.
