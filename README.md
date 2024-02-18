@@ -33,7 +33,7 @@ This Python application utilizes Google Sheets through the `gspread` library to 
 4. **Usage:**
    - Run the Python script to interact with your Google Sheet data:
      ```
-     python gym_workout_tracker.py
+     python3 run.py
      ```
 
 ## Testing
