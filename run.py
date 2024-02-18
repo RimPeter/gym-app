@@ -43,7 +43,8 @@ def input_muscle_data():
         else:
             keys_list = list(muscle_dict.keys())
             print('\nThe muscle types you can select are:\n')
-            print(keys_list)
+            for i in range(0, len(keys_list), 5):  #Process in chunks of 5
+                print(', '.join(keys_list[i:i+5]))
     return muscle_type
 
 
