@@ -20,6 +20,7 @@ workout_data = workout.get_all_values()
 cumulative = SHEET.worksheet('cumulative')
 cumulative_data = cumulative.get_all_values()
 
+
 with open('exercisedict.json', 'r') as file:
     exercise_dict = json.load(file)
 
@@ -113,6 +114,7 @@ def get_integer_input(prompt):
                 print("Please enter a number greater than zero.")
         except ValueError:
             print("Invalid input. Please enter a valid integer.")
+            
 
 
 def exercise_values():
@@ -131,14 +133,26 @@ def exercise_values():
         total_weight += repetition * weight
     update_cumulative(chosen_exercise, total_weight)
 
+def update_exercise_worksheet():
+    workout = SHEET.worksheet('exercise')
+    exercise_data = workout.get_all_values()
+    return exercise_data
 
-def print_my_workout(data):
+def update_cumulative_worksheet():
+    cumulative = SHEET.worksheet('cumulative')
+    cumulative_data = cumulative.get_all_values()
+    return cumulative_data
+
+def print_my_workout():
     '''
     Print workout data for selected exercise.
     '''
+    data = update_exercise_worksheet()
+    # workout = SHEET.worksheet('exercise')
+    # data = workout.get_all_values()
     each_exercise = list(set(exercise[0] for exercise in data[1:]))
     each_exercise.sort()
-
+    
     print("Select an exercise type to print:")
     for index, exercise in enumerate(each_exercise, start=1):
         print(f"{index}. {exercise}")
@@ -160,6 +174,7 @@ def print_sum_of_all_weights():
     '''
     Print total weights for all exercises.
     '''
+    cumulative_data = update_cumulative_worksheet()
     for row in cumulative_data:
         print(row)
 
@@ -215,7 +230,7 @@ def main():
         if choice == '1':
             exercise_values()
         elif choice == '2':
-            print_my_workout(workout_data)
+            print_my_workout()
         elif choice == '3':
             print_sum_of_all_weights()
         elif choice == '4':
