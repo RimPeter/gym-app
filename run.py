@@ -34,15 +34,15 @@ def input_muscle_data():
     '''
     muscle_type_choice = False
     while muscle_type_choice is not True:
-        muscle_type = input('input muscle type you want to exercise!\n')
+        muscle_type = input(
+            '\nPlease, input muscle type you want to exercise!\n'
+            )
         muscle_type = muscle_type.lower()
         if muscle_type in muscle_dict:
             muscle_type_choice = True
-            print('True')
         else:
-            print('False')
             keys_list = list(muscle_dict.keys())
-            print('The muscle types you can choose are:')
+            print('\nThe muscle types you can select are:\n')
             print(keys_list)
     return muscle_type
 
@@ -54,22 +54,22 @@ def select_exercise():
     muscle_type = input_muscle_data()
     for muscle_key in muscle_dict.keys():
         if muscle_key == muscle_type:
-            print(f'You have chosen {muscle_key} muscle type.')
+            print(f'\nYou have selected {muscle_key} muscle type.')
             for index, exercise in enumerate(muscle_dict[muscle_key], start=1):
                 print(f'{index}. {exercise}')
             while True:
-                user_input = input("Select index number for exercise: \n")
+                user_input = input("Please select index number for exercise: \n")
                 try:
                     index = int(user_input) - 1
                     if index >= 0 and index < len(muscle_dict[muscle_key]):
                         selected_exercise = muscle_dict[muscle_key][index]
-                        print(f"The selected exercise is: {selected_exercise}")
+                        print(f"\nThe selected exercise is: {selected_exercise}")
                         break
                     else:
-                        print("Invalid index.")
+                        print("\nInvalid index.")
                         print("Select within the range of the list.")
                 except ValueError:
-                    print("Please enter a valid integer.")
+                    print("\nPlease enter a valid integer.")
     return selected_exercise
 
 
@@ -79,13 +79,13 @@ def number_of_sets():
     '''
     while True:
         try:
-            number_of_set = int(input('Enter number of sets!\n'))
+            number_of_set = int(input('\nEnter number of sets!\n'))
             if number_of_set > 0:
                 return number_of_set
             else:
-                print("Please enter a number greater than zero.")
+                print("\nPlease enter a number greater than zero.")
         except ValueError:
-            print("Please enter a valid integer.")
+            print("\nPlease enter a valid integer.")
 
 
 def update_cumulative(selected_exercise, total_weight):
@@ -116,9 +116,9 @@ def get_integer_input(prompt):
             if user_input > 0:
                 return user_input
             else:
-                print("Please enter a number greater than zero.")
+                print("\nPlease enter a number greater than zero.")
         except ValueError:
-            print("Invalid input. Please enter a valid integer.")
+            print("\nInvalid input. Please enter a valid integer.")
 
 
 def exercise_values():
@@ -180,7 +180,7 @@ def print_my_workout():
     each_exercise = list(set(exercise[0] for exercise in data[1:]))
     each_exercise.sort()
 
-    print("Select an exercise type to print:")
+    print("\nSelect an exercise type to print:")
     for index, exercise in enumerate(each_exercise, start=1):
         print(f"{index}. {exercise}")
 
@@ -189,7 +189,7 @@ def print_my_workout():
             'Enter the index number of the workout to print:\n')) - 1
         selected_exercise = each_exercise[choice_index]
     except (ValueError, IndexError):
-        print("Invalid selection. Please enter a valid index number.")
+        print("\nInvalid selection. Please enter a valid index number.")
         return
     print(data[0])
 
@@ -256,14 +256,17 @@ def main():
     Main menu for user actions.
     '''
     while True:
-        print("\nChoose an option:")
-        print("1. Enter workout data")
-        print("2. Print my workout")
-        print("3. Print sum of all weights")
+        print("\n******************")
+        print("GYM APP: MAIN MENU")
+        print("******************\n")
+        print("Please, select from the folowing 5 options:")
+        print("1. Enter my workout data")
+        print("2. Print my workout data")
+        print("3. Print sum of all weights for each exercise")
         print("4. Delete recent inputs")
         print("5. Exit")
 
-        choice = input("Enter your choice (1/2/3/4): ")
+        choice = input("Enter option (1/2/3/4/5): \n")
 
         if choice == '1':
             exercise_values()
@@ -274,10 +277,10 @@ def main():
         elif choice == '4':
             delete_recent_rows_of_workout()
         elif choice == '5':
-            print("Exiting program.")
+            print("\nExiting program.")
             break
         else:
-            print("Invalid choice. Please enter a valid option (1/2/3/4).")
+            print("\nInvalid choice. Please enter a valid option (1/2/3/4/5).")
 
 
 main()
