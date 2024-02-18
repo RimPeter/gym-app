@@ -33,6 +33,36 @@ This Python application utilizes Google Sheets through the `gspread` library to 
      python gym_workout_tracker.py
      ```
 
+## Testing
+
+- **PEP8 Guidelines**: The code conforms to PEP8 guidelines for Python code style.
+- **Manual Testing**: Extensive manual testing conducted for invalid inputs, ensuring robust input validation.
+- **Platform Testing**: Successfully tested on both Heroku and a local terminal environment.
+
+## Deployment
+
+To use this application, you'll need a Google Sheet set up as your data store. Follow these steps for deployment:
+
+1. **Google Sheets Setup**: Create a new Google Sheets document and name it accordingly (e.g., "gym_app"). Set up worksheets named 'exercise' and 'cumulative' for tracking workouts and cumulative data, respectively.
+2. **Google Cloud Platform**: Set up a project in the Google Cloud Platform, enable the Google Sheets API, and create credentials (service account key) for accessing your Google Sheet from the Python application.
+3. **Heroku Deployment**:
+    - Sign up for a Heroku account at [Heroku](https://www.heroku.com/).
+    - Follow the steps to deploy a Python app, including setting up a `Procfile`, `requirements.txt`, and configuring environment variables for your Google Sheets credentials.
+    - Deploy your application through the Heroku Dashboard or Heroku CLI.
+
+## Credits
+
+- **Google Sheets Tutorial**: [Link to Tutorial](https://www.youtube.com/watch?v=N2opj8XzYBY)
+- **Python Tutorial**: [Link to Tutorial](https://www.youtube.com/watch?v=rfscVS0vtbw)
+
+## Bugs
+
+There are no remaining bugs in the application.
+
+## Solved Bugs
+
+- **Data Update Issue**: Initially encountered issues with updating data across worksheets, which was resolved by ensuring synchronous updates and proper fetching of worksheet data.
+
 ## Functions
 
 - `input_muscle_data()`: Prompts the user to input a valid muscle type.
