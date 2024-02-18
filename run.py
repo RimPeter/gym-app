@@ -134,11 +134,22 @@ def exercise_values():
     update_cumulative(chosen_exercise, total_weight)
 
 def update_exercise_worksheet():
+    '''
+    Retrieves and returns the current data from the 'exercise' or 'cumulative' worksheet. 
+    These functions are used to refresh the local representation of worksheet data, 
+    ensuring the script works with the most up-to-date information from the Google Sheet.
+    '''
     workout = SHEET.worksheet('exercise')
     exercise_data = workout.get_all_values()
     return exercise_data
 
 def update_cumulative_worksheet():
+    '''
+    Retrieves and returns the current data from the 'exercise' or 'cumulative' worksheet. 
+    These functions are used to refresh the local representation of worksheet data, 
+    ensuring the script works with the most up-to-date information from the Google Sheet.
+    '''
+
     cumulative = SHEET.worksheet('cumulative')
     cumulative_data = cumulative.get_all_values()
     return cumulative_data
@@ -182,6 +193,13 @@ def print_sum_of_all_weights():
 
     
 def remove_cumulative(rows_to_delete):
+    '''
+    This function adjusts the cumulative totals in the 'cumulative' 
+    worksheet by subtracting the weights specified in the rows. 
+    If the new cumulative weight of an exercise drops to zero, 
+    the corresponding row is deleted from the worksheet.
+    '''
+
     for row in rows_to_delete:
         exercise_name = row[0]
         weight_to_subtract = int(row[4])
