@@ -36,6 +36,7 @@ This Python application utilizes Google Sheets through the `gspread` library to 
 ## Testing
 
 - **PEP8 Guidelines**: The code conforms to PEP8 guidelines for Python code style.
+![PEP8 testing](images/PEP8.png)
 - **Manual Testing**: Extensive manual testing conducted for invalid inputs, ensuring robust input validation.
 - **Platform Testing**: Successfully tested on both Heroku and a local terminal environment.
 
