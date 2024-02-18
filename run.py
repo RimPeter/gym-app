@@ -179,10 +179,9 @@ def print_sum_of_all_weights():
         print(row)
 
 
+
+    
 def remove_cumulative(rows_to_delete):
-    '''
-    Adjust cumulative total by subtracting weights.
-    '''
     for row in rows_to_delete:
         exercise_name = row[0]
         weight_to_subtract = int(row[4])
@@ -191,7 +190,13 @@ def remove_cumulative(rows_to_delete):
             row_index = cumulative_exercises.index(exercise_name) + 1
             current_weight = int(cumulative.cell(row_index, 2).value)
             new_weight = max(0, current_weight - weight_to_subtract)
-            cumulative.update_cell(row_index, 2, new_weight)
+            
+            # If new_weight is zero, delete the row.
+            if new_weight == 0:
+                cumulative.delete_rows(row_index)
+            else:
+                cumulative.update_cell(row_index, 2, new_weight)
+
 
 
 def delete_recent_rows_of_workout():
