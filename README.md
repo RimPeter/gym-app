@@ -5,8 +5,11 @@ This Python application utilizes Google Sheets through the `gspread` library to 
 ## Features
 
 - **Enter Workout Data:** Users can input workout data including the exercise name, number of sets, repetitions per set, and weight used per set.
+  ![Main Menu](images/mainmenu.png)
 - **View Workout Data:** Allows users to select and view workout data for a specific exercise.
+  ![Muscle List](images/musclelist.png)
 - **View Cumulative Weights:** Displays the sum of all weights lifted for each exercise.
+  ![Printed Workout](images/printedworkout.png)
 - **Delete Recent Inputs:** Enables users to delete a specified number of the most recent workout entries.
 - **Dynamic Data Management:** Automatically updates cumulative data in the 'cumulative' worksheet based on user actions.
 
@@ -30,7 +33,7 @@ This Python application utilizes Google Sheets through the `gspread` library to 
 4. **Usage:**
    - Run the Python script to interact with your Google Sheet data:
      ```
-     python gym_workout_tracker.py
+     python3 run.py
      ```
 
 ## Testing
